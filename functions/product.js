@@ -4,8 +4,10 @@ const prisma = new PrismaClient()
 
 exports.handler = async (event, context, callback) => {
   try {
+    const id = parseInt(event.queryStringParameters.id || '2', 10)
+
     const product = await prisma.product.findOne({
-      where: { id: 2 },
+      where: { id },
     })
 
     return {
