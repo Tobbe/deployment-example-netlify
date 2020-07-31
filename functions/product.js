@@ -4,9 +4,10 @@ const prisma = new PrismaClient()
 
 exports.handler = async (event, context, callback) => {
   try {
-    const posts = await prisma.post.findMany({
-      include: { author: true }
+    const posts = await prisma.post.findOne({
+      where: { id: 2 },
     })
+
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
@@ -14,6 +15,7 @@ exports.handler = async (event, context, callback) => {
     }
   } catch (error) {
     console.error(error)
+
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },

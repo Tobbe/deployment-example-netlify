@@ -3,16 +3,16 @@ const prisma = new PrismaClient()
 
 exports.handler = async (event, context, callback) => {
   try {
-    const users = await prisma.user.findMany({
-      include: { profile: true }
-    })
+    const products = await prisma.product.findMany()
+
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(users)
+      body: JSON.stringify(products)
     }
   } catch (error) {
     console.error(error)
+
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
