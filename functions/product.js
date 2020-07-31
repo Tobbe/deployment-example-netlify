@@ -4,14 +4,14 @@ const prisma = new PrismaClient()
 
 exports.handler = async (event, context, callback) => {
   try {
-    const posts = await prisma.post.findOne({
+    const product = await prisma.product.findOne({
       where: { id: 2 },
     })
 
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(posts)
+      body: JSON.stringify(product)
     }
   } catch (error) {
     console.error(error)
